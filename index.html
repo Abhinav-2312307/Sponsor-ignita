@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ignitia 2025 Sponsorship | PSIT Kanpur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Zen+Dots&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .section-card {
+            background: rgba(17, 34, 64, 0.9);
+            border: 1px solid #233554;
+            border-radius: 20px;
+            padding: 2rem;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 10px 30px rgba(255,77,0,0.1),
+                        0 0 40px rgba(0,255,136,0.05) inset;
+        }
+
+        .section-card:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255,77,0,0.2),
+                        0 0 60px rgba(0,255,136,0.1) inset;
+        }
+
+        .tier-card-3d {
+            transform-style: preserve-3d;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            perspective: 1000px;
+        }
+
+        .tier-card-3d:hover {
+            transform: rotateY(8deg) rotateX(3deg) translateY(-8px);
+        }
+
+        .celebrity-card-3d {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .celebrity-card-3d:hover {
+            transform: rotateY(5deg) translateY(-5px);
+        }
+
+        .form-card-3d {
+            transform: perspective(1000px) rotateX(1deg);
+            transition: all 0.4s ease;
+        }
+
+        .form-card-3d:hover {
+            transform: perspective(1000px) rotateX(0deg);
+        }
+
+        :root {
+            --primary: #FF4D00;
+            --secondary: #00FF88;
+            --bg: #0A192F;
+            --card-bg: #112240;
+        }
+
+        body {
+            background: var(--bg);
+            color: #CCD6F6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Cosmic Background */
+        #cosmic-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Custom Mouse Pointer */
+        .cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease-out;
+            width: 32px;
+            height: 32px;
+            background-image: url('https://ignitia2k25.itshivam.me/CursorEffect/cursor.svg');
+            background-size: contain;
+            mix-blend-mode: difference;
+        }
+
+        /* Particle Effects */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: particle-float 1s ease-out forwards;
+            z-index: 9998;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-50%, -150%) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Content Styling */
+        .hero-title {
+            text-shadow: 0 0 30px var(--primary);
+            animation: title-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes title-glow {
+            from { text-shadow: 0 0 20px var(--primary); }
+            to { text-shadow: 0 0 40px var(--primary), 0 0 30px var(--secondary); }
+        }
+        @keyframes shiny {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .shiny-text {
+            font-family: 'Cinzel Decorative', serif; /* Change font-family here */
+            font-weight: 700;
+            background: linear-gradient(90deg, #FFD700, #FF8C00, #FF4500, #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% auto;
+            animation: shiny 3s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 10px rgba(255, 215, 0, 0.7);
+        }
+        .shiny-text {
+            text-shadow: 0 0 10px rgba(255, 223, 0, 0.8), 0 0 20px rgba(255, 140, 0, 0.6);
+                }
+                .shiny-text::after {
+            content: attr(data-text); /* Keeps text visible in case of transparency issues */
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            color: #FFD700;
+            opacity: 0.3;
+        }
+    </style>
+    <style>
+        .form-label {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control, .form-select {
+            border: 1px solid #233554;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(255,77,0,0.3);
+        }
+        
+        .glow-on-hover {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glow-on-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255,77,0,0.4);
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        </style>
+        <style>
+            .celebrity-carousel-container {
+                overflow: hidden;
+                padding: 0 50px;
+            }
+            
+            .celebrity-carousel {
+                display: flex;
+                gap: 30px;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                padding-bottom: 20px;
+                -ms-overflow-style: none;  /* Hide scrollbar IE/Edge */
+                scrollbar-width: none;  /* Hide scrollbar Firefox */
+            }
+            
+            .celebrity-carousel::-webkit-scrollbar {
+                display: none; /* Hide scrollbar Chrome/Safari */
+            }
+            
+            .celebrity-profile {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin: 0 auto;
+                border: 3px solid var(--primary);
+                transition: transform 0.3s ease;
+            }
+            
+            .profile-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            
+            .carousel-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(17, 34, 64, 0.9);
+                border: 2px solid var(--primary);
+                color: white;
+                padding: 15px;
+                border-radius: 50%;
+                cursor: pointer;
+                z-index: 10;
+                transition: all 0.3s ease;
+            }
+            
+            .carousel-btn:hover {
+                background: var(--primary);
+                transform: translateY(-50%) scale(1.1);
+            }
+            
+            .prev-btn { left: 0; }
+            .next-btn { right: 0; }
+            
+            /* Auto-scroll animation */
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-250px * 5)); }
+            }
+            
+            .celebrity-carousel {
+                animation: scroll 30s linear infinite;
+            }
+            
+            .celebrity-carousel:hover {
+                animation-play-state: paused;
+            }
+            
+            @media (max-width: 768px) {
+                .celebrity-profile {
+                    width: 120px;
+                    height: 120px;
+                }
+                
+                .carousel-btn {
+                    padding: 10px;
+                }
+            }
+            </style>
+</head>
+<body>
+    <!-- Cosmic Background -->
+    <canvas id="cosmic-canvas"></canvas>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Hero Section -->
+    <section class="min-vh-100 d-flex align-items-center">
+        <div class="container text-center">
+
+            <!-- heading  -->
+            <!-- <h1 class="hero-title display-1 fw-bold mb-4">IGNITIA 2025</h1> -->
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 shiny-text">
+                IGNITIA 2025
+            </h1>
+            <p class="lead mb-4" style="color: var(--secondary)">Techno-Cultural Extravaganza | March 2025</p>
+            <a href="#sponsor-form" class="btn btn-lg px-5 py-3" 
+               style="background: var(--primary); color: white">Become a Sponsor</a>
+        </div>
+    </section>
+    <section class="py-5">
+        <div class="container">
+            <div class="section-card">
+                <h2 class="section-title">Why Sponsor Ignitia 2025?</h2>
+                <div class="row g-4">
+                    <div class="col-md-6 tier-card-3d">
+                        <div class="tier-card p-4 h-100">
+                            <h4>📈 Massive Reach</h4>
+                            <p>Connect with 20,000+ attendees across North India</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 tier-card-3d">
+                        <div class="tier-card p-4 h-100">
+                            <h4>🌟 Celebrity Glam</h4>
+                            <p>Associate with top Bollywood stars & influencers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- Sponsorship Tiers -->
+     <section class="py-5">
+        <div class="container section-card">
+            <h2 class="section-title">Sponsorship Packages</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 tier-card-3d">
+                    <div class="tier-card p-4 text-center h-100">
+                        <h3 class="text-primary mb-4">🚀 Powered By</h3>
+                        <h2 class="my-4" style="color: var(--secondary)">₹5,00,000</h2>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">✅ Prime Brand Visibility</li>
+                            <li class="mb-3">✅ 36x12 Exhibit Booth</li>
+                            <li class="mb-3">✅ Celebrity Interaction</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 tier-card-3d">
+                    <div class="tier-card p-4 text-center h-100">
+                        <h3 class="text-primary mb-4">🚀 Powered By</h3>
+                        <h2 class="my-4" style="color: var(--secondary)">₹5,00,000</h2>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">✅ Prime Brand Visibility</li>
+                            <li class="mb-3">✅ 36x12 Exhibit Booth</li>
+                            <li class="mb-3">✅ Celebrity Interaction</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 tier-card-3d">
+                    <div class="tier-card p-4 text-center h-100">
+                        <h3 class="text-primary mb-4">🚀 Powered By</h3>
+                        <h2 class="my-4" style="color: var(--secondary)">₹5,00,000</h2>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">✅ Prime Brand Visibility</li>
+                            <li class="mb-3">✅ 36x12 Exhibit Booth</li>
+                            <li class="mb-3">✅ Celebrity Interaction</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Add other tiers similarly -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Stall Opportunities -->
+    <section class="py-5">
+        <div class="container section-card">
+            <h2 class="section-title">Stall Packages</h2>
+            <div class="row g-4">
+                <div class="col-md-4 tier-card-3d">
+                    <div class="tier-card p-4 text-center">
+                        <h4>Standard Stall</h4>
+                        <h3 class="text-primary">₹50,000</h3>
+                        <p>18x10 ft space with basic amenities</p>
+                    </div>
+                </div>
+                <!-- Add other stall types -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Celebrities Section -->
+
+    <!-- <section class="py-5">
+        <div class="container section-card">
+            <h2 class="section-title">Featured Celebrities</h2>
+            <div class="celebrity-grid mt-5">
+                <div class="celebrity-card-3d">
+                    <div class="tier-card p-3 text-center">
+                        <h5>Samay Raina </h5>
+                        <p class="mb-0 text-muted">Youtuber</p>
+                    </div>
+                </div>
+                <div class="celebrity-card-3d">
+                    <div class="tier-card p-3 text-center">
+                        <h5>Madara Uchiha </h5>
+                        <p class="mb-0 text-muted">shinobi</p>
+                    </div>
+                </div>
+                Add other celebrities
+            </div>
+
+        </div>
+    </section> -->
+    <section class="py-5">
+        <div class="container section-card">
+            <h2 class="section-title">Featured Celebrities</h2>
+            <div class="celebrity-carousel-container position-relative mt-5">
+                <button class="carousel-btn prev-btn" onclick="scrollCelebrities(-1)">❮</button>
+                <button class="carousel-btn next-btn" onclick="scrollCelebrities(1)">❯</button>
+                
+                <div class="celebrity-carousel" id="celebrityCarousel">
+                    <!-- Celebrity Cards -->
+                    <div class="celebrity-card-3d">
+                        <div class="tier-card p-3 text-center">
+                            <div class="celebrity-profile">
+                                <img src="samay.jpeg" alt="Samay Raina" class="profile-img">
+                            </div>
+                            <h5 class="mt-3">Samay Raina</h5>
+                            <p class="mb-0 text-muted">YouTuber</p>
+                        </div>
+                    </div>
+    
+                    <div class="celebrity-card-3d">
+                        <div class="tier-card p-3 text-center">
+                            <div class="celebrity-profile">
+                                <img src="madara.jpg" alt="Madara Uchiha" class="profile-img">
+                            </div>
+                            <h5 class="mt-3">Madara Uchiha</h5>
+                            <p class="mb-0 text-muted">Shinobi</p>
+                        </div>
+                    </div>
+    
+                    <!-- Add 8-13 more celebrity cards following same structure -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Form -->
+    <section id="sponsor-form" class="py-5">
+        <div class="container form-card-3d">
+            <div class="section-card">
+                <h2 class="section-title">Become a Sponsor</h2>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-lg-10">
+                        <form class="p-4">
+                            <div class="row g-4">
+                                <!-- Company Details -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-primary">Company Name</label>
+                                        <input type="text" class="form-control bg-dark text-light" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-primary">Contact Person</label>
+                                        <input type="text" class="form-control bg-dark text-light" required>
+                                    </div>
+                                </div>
+    
+                                <!-- Contact Information -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-primary">Email Address</label>
+                                        <input type="email" class="form-control bg-dark text-light" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-primary">Phone Number</label>
+                                        <input type="tel" class="form-control bg-dark text-light" required>
+                                    </div>
+                                </div>
+    
+                                <!-- Sponsorship Details -->
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label text-primary">Sponsorship Tier</label>
+                                        <select class="form-select bg-dark text-light" required>
+                                            <option value="">Select Sponsorship Package</option>
+                                            <option value="powered-by">Powered By Sponsor (₹5,00,000)</option>
+                                            <option value="co-powered">Co-Powered By (₹3,00,000)</option>
+                                            <option value="diamond">Diamond Sponsor (₹1,50,000)</option>
+                                            <option value="platinum">Platinum Sponsor (₹1,00,000)</option>
+                                            <option value="gold">Gold Sponsor (₹50,000)</option>
+                                            <option value="silver">Silver Sponsor (₹25,000)</option>
+                                        </select>
+                                    </div>
+                                </div>
+    
+                                <!-- Additional Options -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-primary">Preferred Sponsorship Category</label>
+                                        <select class="form-select bg-dark text-light">
+                                            <option value="">Select Category</option>
+                                            <option>Food & Beverage</option>
+                                            <option>Technology</option>
+                                            <option>Merchandise</option>
+                                            <option>Media Partner</option>
+                                            <option>Knowledge Partner</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-primary">Company Profile (PDF)</label>
+                                        <input type="file" class="form-control bg-dark text-light" accept=".pdf">
+                                    </div>
+                                </div>
+    
+                                <!-- Custom Requirements -->
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label text-primary">Special Requirements</label>
+                                        <textarea class="form-control bg-dark text-light" rows="4" 
+                                                  placeholder="Mention any specific branding requirements, stall preferences, or additional requests"></textarea>
+                                    </div>
+                                </div>
+    
+                                <!-- Agreement -->
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="terms" required>
+                                        <label class="form-check-label" for="terms">
+                                            I agree to the <a href="#" class="text-primary">Terms & Conditions</a>
+                                        </label>
+                                    </div>
+                                </div>
+    
+                                <!-- Submit Button -->
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg px-5 py-3 glow-on-hover">
+                                        Submit Sponsorship Request
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5">
+        <div class="container section-card">
+            <h2 class="section-title">Contact Team</h2>
+            <div class="row g-4">
+                <div class="col-md-4 tier-card-3d">
+                    <div class="tier-card p-3 text-center">
+                        <h5>Abhinav Sahu</h5>
+                        <p class="mb-1">Hukage</p>
+                        <a href="tel:+919793404007" class="text-primary">+91-9793404007</a>
+                    </div>
+                </div>
+                <div class="col-md-4 tier-card-3d">
+                    <div class="tier-card p-3 text-center">
+                        <h5>Monkey D Luffy </h5>
+                        <p class="mb-1">Pirate King</p>
+                        <a href="tel:+918127593818" class="text-primary">+91-8127593818</a>
+                    </div>
+                </div>
+                <!-- Add other contacts -->
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Cosmic Background
+        const canvas = document.getElementById('cosmic-canvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function initCosmicBackground() {
+            const resizeCanvas = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            };
+
+            const createStars = () => {
+                stars = [];
+                const starCount = Math.floor(window.innerWidth * window.innerHeight / 2500);
+                for(let i = 0; i < starCount; i++) {
+                    stars.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        radius: Math.random() * 1.5,
+                        opacity: Math.random(),
+                        speed: Math.random() * 0.05
+                    });
+                }
+            };
+
+            const drawStars = () => {
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                stars.forEach(star => {
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                    ctx.fill();
+                    star.opacity += star.speed;
+                    if(star.opacity > 1 || star.opacity < 0) star.speed *= -1;
+                });
+            };
+
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                createStars();
+            });
+
+            resizeCanvas();
+            createStars();
+            
+            const animate = () => {
+                drawStars();
+                requestAnimationFrame(animate);
+            };
+            animate();
+        }
+
+        // Cursor and Particle Effects
+        function initCursorEffects() {
+            const cursor = document.querySelector('.cursor');
+            let mouseX = 0, mouseY = 0;
+            let posX = 0, posY = 0;
+            let particleTimer = 0;
+
+            document.addEventListener('mousemove', e => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            const updateCursor = () => {
+                posX += (mouseX - posX) * 0.2;
+                posY += (mouseY - posY) * 0.2;
+                cursor.style.transform = `translate(${posX}px, ${posY}px)`;
+
+                // Create particles
+                if(particleTimer % 2 === 0) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = `${posX}px`;
+                    particle.style.top = `${posY}px`;
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 1000);
+                }
+                particleTimer++;
+
+                requestAnimationFrame(updateCursor);
+            };
+            updateCursor();
+        }
+
+        // Initialize
+        initCosmicBackground();
+        initCursorEffects();
+    </script>
+    <script>
+        let autoScrollInterval;
+        
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                const carousel = document.getElementById('celebrityCarousel');
+                const scrollAmount = carousel.offsetWidth / 2;
+                carousel.scrollLeft += scrollAmount;
+                
+                if (carousel.scrollLeft >= (carousel.scrollWidth - carousel.offsetWidth)) {
+                    carousel.scrollLeft = 0;
+                }
+            }, 3000);
+        }
+        
+        function scrollCelebrities(direction) {
+            clearInterval(autoScrollInterval);
+            const carousel = document.getElementById('celebrityCarousel');
+            const scrollAmount = carousel.offsetWidth / 2;
+            carousel.scrollLeft += (scrollAmount * direction);
+            startAutoScroll();
+        }
+        
+        // Initialize auto-scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            startAutoScroll();
+            
+            // Pause on hover
+            const carousel = document.getElementById('celebrityCarousel');
+            carousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+            carousel.addEventListener('mouseleave', startAutoScroll);
+        });
+        </script>
+</body>
+</html>
